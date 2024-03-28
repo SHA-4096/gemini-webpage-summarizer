@@ -26,7 +26,7 @@ func InitGemini(apiKey string) {
 	cs.History = []*genai.Content{
 		&genai.Content{
 			Parts: []genai.Part{
-				genai.Text("Now you are an assitant to analyze html pages and giving summary of the webpage"),
+				genai.Text("Now you are an assitant to analyze contents from pages and giving summary of the webpage"),
 			},
 			Role: "user",
 		},

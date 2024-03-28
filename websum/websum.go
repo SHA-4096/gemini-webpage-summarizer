@@ -3,6 +3,7 @@ package websum
 import (
 	"io"
 	"net/http"
+	"regexp"
 )
 
 func InitWebsumWithGeminiApiKey(apiKey string) {
@@ -26,7 +27,17 @@ func GetWebpageSummary(url string) (string, error) {
 	}
 	// Convert the body to a string
 	bodyStr := string(body)
-	// Chat with Gemini
+	bodyStr = removeHtmlTags(bodyStr)
 	ret, err := ChatWithGemini(bodyStr)
 	return ret, err
+}
+
+func removeHtmlTags(str string) string {
+	re := regexp.MustCompile(">(.*?)<")
+	matches := re.FindAllString(str, -1)
+	ret := ""
+	for _, match := range matches {
+		ret += match[1:len(match)-1] + " "
+	}
+	return ret
 }
