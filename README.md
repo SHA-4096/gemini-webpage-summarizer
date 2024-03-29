@@ -17,8 +17,9 @@ Initialize the gemini chat session or use your existing client,session and conte
 ```go
 InitWebsumWithGeminiApiKey(YOUR_API_KEY)
 ```
+or
 ```go
-func ImportExistingClientAndChatSession(client,chatSession,context)
+ImportExistingClientAndChatSession(client,chatSession,context)
 ```
 
 Use `GetWebpageSummary()` to get a summary of a webpage
