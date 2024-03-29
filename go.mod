@@ -1,4 +1,4 @@
-module websum
+module github.com/SHA-4096/gemini-webpage-summarizer
 
 go 1.19
 
