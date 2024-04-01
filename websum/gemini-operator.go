@@ -12,7 +12,7 @@ var ctx context.Context
 var client *genai.Client
 var cs *genai.ChatSession
 
-func InitGemini(apiKey string) {
+func InitGemini(apiKey, prompt string) {
 	ctx = context.Background()
 	// Access your API key as an environment variable (see "Set up your API key" above)
 	var err error
@@ -26,13 +26,13 @@ func InitGemini(apiKey string) {
 	cs.History = []*genai.Content{
 		&genai.Content{
 			Parts: []genai.Part{
-				genai.Text("Now you are an assitant to analyze contents from pages and giving summary of the webpage"),
+				genai.Text(prompt),
 			},
 			Role: "user",
 		},
 		&genai.Content{
 			Parts: []genai.Part{
-				genai.Text("OK, I will try to understand the content of the page and give you a summary."),
+				genai.Text("OK."),
 			},
 			Role: "model",
 		},

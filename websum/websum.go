@@ -6,8 +6,13 @@ import (
 	"regexp"
 )
 
-func InitWebsumWithGeminiApiKey(apiKey string) {
-	InitGemini(apiKey)
+func InitWebsumWithGeminiApiKey(apiKey string, customPrompt *string) {
+	if customPrompt != nil {
+		InitGemini(apiKey, *customPrompt)
+	} else {
+		InitGemini(apiKey, "Now you're an assitant to help me with web page summary. You'll receive contents in webpage and you will help me summarize it in its original language.")
+	}
+
 }
 
 func GetWebpageSummary(url string) (string, error) {
@@ -28,7 +33,7 @@ func GetWebpageSummary(url string) (string, error) {
 	// Convert the body to a string
 	bodyStr := string(body)
 	bodyStr = removeHtmlTags(bodyStr)
-	ret, err := ChatWithGemini(bodyStr)
+	ret, err := ChatWithGemini("Please summarize: " + bodyStr)
 	return ret, err
 }
 
